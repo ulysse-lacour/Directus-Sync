@@ -1,0 +1,86 @@
+[
+  {
+    "project_name": "DirectuSync",
+    "project_color": "#F0BD33",
+    "public_note": null,
+    "auth_login_attempts": 25,
+    "auth_password_policy": null,
+    "storage_asset_transform": "all",
+    "storage_asset_presets": null,
+    "custom_css": ".hide, .description-dot {\n    display: none !important;\n}\n\n.avatar-image {\n    border-radius: 50% !important;\n    padding: 0.25rem !important;\n}",
+    "storage_default_folder": null,
+    "basemaps": null,
+    "mapbox_key": null,
+    "module_bar": [
+      {
+        "type": "module",
+        "id": "content",
+        "enabled": true
+      },
+      {
+        "type": "module",
+        "id": "files",
+        "enabled": true
+      },
+      {
+        "type": "module",
+        "id": "users",
+        "enabled": true
+      },
+      {
+        "type": "link",
+        "id": "_vMo2p8lPvIZMjtTiVbQb",
+        "name": "Activity",
+        "url": "/activity",
+        "icon": "browse_gallery",
+        "enabled": true
+      },
+      {
+        "type": "module",
+        "id": "settings",
+        "enabled": true,
+        "locked": true
+      },
+      {
+        "type": "module",
+        "id": "insights",
+        "enabled": false
+      }
+    ],
+    "project_descriptor": null,
+    "default_language": "en-US",
+    "custom_aspect_ratios": null,
+    "default_appearance": "auto",
+    "default_theme_light": "Directus Minimal",
+    "theme_light_overrides": {
+      "navigation": {
+        "modules": {
+          "background": "var(--theme--foreground)",
+          "button": {
+            "background": "var(--theme--foreground)",
+            "foreground": "#F1F5F9"
+          }
+        }
+      }
+    },
+    "default_theme_dark": "Directus Default",
+    "theme_dark_overrides": {
+      "backgroundNormal": "#1E293B",
+      "navigation": {
+        "list": {
+          "icon": {
+            "foreground": "#FFFF"
+          }
+        }
+      }
+    },
+    "report_error_url": null,
+    "report_bug_url": null,
+    "report_feature_url": null,
+    "public_registration": false,
+    "public_registration_verify_email": true,
+    "public_registration_role": null,
+    "public_registration_email_filter": null,
+    "_syncId": "c6583cae-dc39-4bc1-9783-b50abb212eed"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "collection": "seo_translations",
+  "field": "seo_id",
+  "related_collection": "seo",
+  "meta": {
+    "junction_field": "Languages_code",
+    "many_collection": "seo_translations",
+    "many_field": "seo_id",
+    "one_allowed_collections": null,
+    "one_collection": "seo",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": "translations",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "seo_translations",
+    "column": "seo_id",
+    "foreign_key_table": "seo",
+    "foreign_key_column": "id",
+    "constraint_name": "seo_translations_seo_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "SET NULL"
+  }
+}

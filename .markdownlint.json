@@ -1,0 +1,12 @@
+{
+  "no-duplicate-heading": {
+    "siblings_only": true
+  },
+  "line-length": false,
+
+  "MD033": {
+    "allowed_elements": ["p", "img"]
+  },
+
+  "MD049": false
+}

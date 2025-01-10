@@ -1,0 +1,16 @@
+# Globals
+.output
+node_modules
+.DS_Store
+
+# Env
+.env*
+!.env.example
+
+# Postgres
+/postgres/*
+
+# Directus
+/directus/uploads/*
+/directus/templates/*
+/directus/backups/*

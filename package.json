@@ -1,0 +1,20 @@
+{
+  "name": "directuxt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bash ./scripts/dev.sh",
+    "db:backup": "bash ./scripts/db-backup.sh",
+    "db:restore": "bash ./scripts/db-restore.sh",
+    "config:pull": "bash ./scripts/config-pull.sh",
+    "config:push": "bash ./scripts/config-push.sh",
+    "config:diff": "bash ./scripts/config-diff.sh",
+    "template:pull": "bash ./scripts/template-pull.sh",
+    "template:push": "bash ./scripts/template-push.sh"
+  },
+  "packageManager": "pnpm@9.10.0",
+  "engines": {
+    "node": ">=20.14.0",
+    "pnpm": ">=9"
+  }
+}

@@ -1,0 +1,77 @@
+services:
+
+  database:
+    image: postgis/postgis:13-master
+    container_name: ${PROJECT_NAME}__database
+    platform: linux/amd64
+
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    expose:
+      - ${DB_PORT}
+    command: -p ${DB_PORT}
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -p ${DB_PORT}"]
+      interval: 5s
+      timeout: 1s
+      retries: 5
+
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PWD}
+
+    volumes:
+      - ./postgres/data/database:/var/lib/postgresql/data
+
+
+  directus:
+    image: ${PROJECT_NAME}__directus
+    container_name: ${PROJECT_NAME}__directus
+    network_mode: host
+
+    build:
+      context: ./directus
+      dockerfile: ./Dockerfile
+
+    depends_on:
+      database:
+        condition: service_healthy
+
+    environment:
+      NODE_ENV: development
+      PROJECT_NAME: ${PROJECT_NAME}
+      TEMPLATE_DIR: ${TEMPLATE_DIR}
+      SECRET: ${SECRET}
+      PUBLIC_URL: ${DIRECTUS_URL}
+      PORT: ${DIRECTUS_PORT}
+      DB_CLIENT: "pg"
+      DB_HOST: "localhost"
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
+      CACHE_ENABLED: "false"
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PWD}
+      DIRECTUS_ADMIN_TOKEN: ${DIRECTUS_ADMIN_TOKEN}
+      CONTENT_SECURITY_POLICY_DIRECTIVES__CHILD_SRC: "'self' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__CONNECT_SRC: "'self' http://localhost:* ws://localhost:* https:"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC: "'self' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_ANCESTORS: "'self' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC: "'self' data: blob: http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__SCRIPT_SRC: "'self' 'unsafe-eval' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__STYLE_SRC: "'self' 'unsafe-inline' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__WORKER_SRC: "'self' blob:"
+      MARKETPLACE_TRUST: "all"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "*"
+
+    volumes:
+      - ./directus/uploads:/directus/uploads
+      - ./directus/extensions:/directus/extensions
+      - ./directus/templates:/directus/templates
+      - ./directus/backups:/directus/backups
+      - ./directus/directus-sync.config.json:/directus/directus-sync.config.json
+      - ./directus/directus-config:/directus/directus-config

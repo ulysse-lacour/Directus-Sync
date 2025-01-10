@@ -1,0 +1,25 @@
+{
+  "collection": "pages_translations",
+  "field": "pages_slug",
+  "related_collection": "pages",
+  "meta": {
+    "junction_field": "Languages_code",
+    "many_collection": "pages_translations",
+    "many_field": "pages_slug",
+    "one_allowed_collections": null,
+    "one_collection": "pages",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": "translations",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "pages_translations",
+    "column": "pages_slug",
+    "foreign_key_table": "pages",
+    "foreign_key_column": "slug",
+    "constraint_name": "pages_translations_pages_slug_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "SET NULL"
+  }
+}

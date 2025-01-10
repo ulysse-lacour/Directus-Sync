@@ -1,0 +1,110 @@
+[
+  {
+    "collection": "directus_collections",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "50e106eb-3577-4f19-9c9a-ec884ffbc7b3"
+  },
+  {
+    "collection": "directus_files",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "4aab11de-fa88-4fa7-bf5c-7e284c5e613f"
+  },
+  {
+    "collection": "directus_users",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "24ebc21b-60a8-4b38-b8b5-f424849eb9b7"
+  },
+  {
+    "collection": "general_infos",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "b730c0b3-ec86-452c-9ca0-460291894873"
+  },
+  {
+    "collection": "Languages",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "7b5fc93d-757f-41db-b088-414114e944bc"
+  },
+  {
+    "collection": "pages_translations",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "9c000fe5-1bd1-44b4-9fca-40b9d2f603ce"
+  },
+  {
+    "collection": "pages",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "04a56fee-a3c1-487a-9501-27c4bcb5adbd"
+  },
+  {
+    "collection": "seo_translations",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "6ed8aa42-2792-4171-b7a4-e26b99882392"
+  },
+  {
+    "collection": "seo",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "610cb843-87ca-4437-b369-5836c0ce3d3a"
+  }
+]
