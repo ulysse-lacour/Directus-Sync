@@ -38,7 +38,7 @@ pnpm dev
 pnpm dev
 
 # Apply base theme template
-pnpm template-apply
+pnpm template:push
 ```
 
 OR :
