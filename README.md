@@ -13,11 +13,11 @@ A few utils scripts are included, they all can be run from root via pnpm.
 - `dev`: launch app in dev mode
 - `db:backup`: backup postgres database and directus uploads folder
 - `db:restore`: restore postgres and directus uploads from local availables backups
-- `config:pull`: export local directus config
-- `config:push`: import local directus config
-- `config:diff`: compare config from app and config-sync folder
-- `template:pull`: export local directus app as a template
-- `template:push`: apply template to local directus app
+- `config:pull`: export local directus config (using directus-sync extension)
+- `config:push`: import local directus config (using directus-sync extension)
+- `config:diff`: compare config from app and config-sync folder (using directus-sync extension)
+- `template:pull`: export local directus app as a template (using directus-template-cli extension)
+- `template:push`: apply template to local directus app (using directus-template-cli extension)
 
 ## Setup
 
