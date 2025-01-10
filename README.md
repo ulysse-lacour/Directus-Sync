@@ -11,16 +11,21 @@ Happy coding !
 A few utils scripts are included, they all can be run from root via pnpm.
 
 - `dev`: launch app in dev mode
-- `backup`: backup postgres database and directus uploads folder
-- `restore`: restore postgres and directus uploads from local availables backups
-- `template-export`: export local directus app as a template
-- `template-apply`: apply template to local directus app
+- `db:backup`: backup postgres database and directus uploads folder
+- `db:restore`: restore postgres and directus uploads from local availables backups
+- `config:pull`: export local directus config
+- `config:push`: import local directus config
+- `config:diff`: compare config from app and config-sync folder
+- `template:pull`: export local directus app as a template
+- `template:push`: apply template to local directus app
 
 ## Setup
 
 First of all create `.env` files based on `.env.example`.
 
 Then you'll need to run from root folder :
+
+EITHER (for blank directus app) :
 
 ```bash
 # Start app
@@ -34,6 +39,19 @@ pnpm dev
 
 # Apply base theme template
 pnpm template-apply
+```
+
+OR :
+
+```bash
+# Start app
+pnpm dev
+
+# Apply config from config-sync
+pnpm config:push
+
+# Import backed up database
+pnpm db:restore
 ```
 
 <p float="middle">
