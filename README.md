@@ -2,7 +2,7 @@
 
 ## *Directus Sync*
 
-To use it you'll need globally installed [pnpm](https://github.com/pnpm/pnpm) and [nvm](https://github.com/nvm-sh/nvm) and obviously Docker.
+To use it you'll need globally installed [pnpm](https://github.com/pnpm/pnpm), [nvm](https://github.com/nvm-sh/nvm) and obviously Docker.
 
 Happy coding !
 
