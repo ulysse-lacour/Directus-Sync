@@ -25,7 +25,7 @@ print_message() {
     case $type in
         "info") echo -e "${BLUE}ℹ️  ${message}${NC}" ;;
         "success") echo -e "${GREEN}✅ ${message}${NC}" ;;
-        "error") echo -e "${RED}❌ ${message}${NC}" ;;
+        "error") echo -e "${RED}❌ ${message}${NC}\n" ;;
         "warning") echo -e "${YELLOW}⚠️  ${message}${NC}" ;;
     esac
 }
@@ -86,15 +86,15 @@ FORMATTED_DATES=()
 
 # Collect and validate complete backups
 while read -r file; do
-    if [[ $file =~ backup_([0-9]{8}_[0-9]{2}[0-9]{2})[0-9]*\.sql$ ]]; then
+    if [[ $file =~ ([0-9]{8}_[0-9]{2}[0-9]{2})[0-9]*\_db.sql$ ]]; then
         timestamp="${BASH_REMATCH[1]}"
-        if [ -f "${BACKUP_DIR}/backup_${timestamp}.sql" ] && \
-           [ -f "${BACKUP_DIR}/uploads_${timestamp}.tar.gz" ]; then
+        if [ -f "${BACKUP_DIR}/${timestamp}_db.sql" ] && \
+           [ -f "${BACKUP_DIR}/${timestamp}_uploads.tar.gz" ]; then
             TIMESTAMPS+=("$timestamp")
             FORMATTED_DATES+=("$(format_date "$timestamp")")
         fi
     fi
-done < <(ls -1 ${BACKUP_DIR}/backup_*.sql 2>/dev/null | sort -r)
+done < <(ls -1 ${BACKUP_DIR}/*_db.sql 2>/dev/null | sort -r)
 
 # Check if any valid backups were found
 if [ ${#TIMESTAMPS[@]} -eq 0 ]; then
@@ -180,7 +180,7 @@ EOF
 temp_log=$(mktemp)
 
 # Restore the database based on backup format
-if [[ -f "${BACKUP_DIR}/backup_${SELECTED_TIMESTAMP}.dump" ]]; then
+if [[ -f "${BACKUP_DIR}/${SELECTED_TIMESTAMP}_db.dump" ]]; then
     # Custom format backup
     docker exec -i "${PROJECT_NAME}__database" pg_restore \
         -h "${DB_HOST}" \
@@ -193,7 +193,7 @@ if [[ -f "${BACKUP_DIR}/backup_${SELECTED_TIMESTAMP}.dump" ]]; then
         --if-exists \
         --disable-triggers \
         --single-transaction \
-        "/backups/backup_${SELECTED_TIMESTAMP}.dump" > "$temp_log" 2>&1
+        "/backups/${SELECTED_TIMESTAMP}_db.dump" > "$temp_log" 2>&1
 else
     # Plain SQL backup
     docker exec -i "${PROJECT_NAME}__database" psql \
@@ -201,7 +201,7 @@ else
         -p "${DB_PORT}" \
         -U "${DB_USER}" \
         -d "${DB_NAME}" \
-        -q < "${BACKUP_DIR}/backup_${SELECTED_TIMESTAMP}.sql" > "$temp_log" 2>&1
+        -q < "${BACKUP_DIR}/${SELECTED_TIMESTAMP}_db.sql" > "$temp_log" 2>&1
 fi
 
 if [ $? -ne 0 ]; then
@@ -222,7 +222,7 @@ print_header "Uploads Restore"
 print_message "info" "Restoring uploads..."
 
 rm -rf ./directus/uploads/* 2>/dev/null
-tar -xzf "${BACKUP_DIR}/uploads_${SELECTED_TIMESTAMP}.tar.gz" -C ./directus/uploads/
+tar -xzf "${BACKUP_DIR}/${SELECTED_TIMESTAMP}_uploads.tar.gz" -C ./directus/uploads/
 
 if [ $? -ne 0 ]; then
     print_message "error" "Uploads restore failed"
